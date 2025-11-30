@@ -52,6 +52,7 @@ Runs the full pipeline end-to-end and returns a structured itinerary.
 │ Collect POIs  │ │ Build itinerary  │ │ Add timings    │ │ Save user data  │
 └───────────────┘ └──────────────────┘ └───────────────┘ └──────────────────┘
 
+
 📦 Project Structure
 SmartTrip-Agent/
 │
