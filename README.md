@@ -1,64 +1,137 @@
-📌 SmartTrip — AI Multi-Agent Travel Itinerary Generator
+🧭 SmartTrip — AI Multi-Agent Travel Itinerary Generator
+Google × Kaggle Agents Intensive Capstone Project
 
-This project was built as part of the Google × Kaggle Agents Intensive Capstone Project.
-SmartTrip is a multi-agent system that automatically builds personalized travel itineraries.
+🚀 Overview
 
-🚀 Features
+SmartTrip is a modular AI multi-agent system that automatically generates personalized multi-day travel itineraries.
+Built as part of the Google × Kaggle AI Agents Intensive, this project demonstrates:
 
-🧠 InfoGatherer Agent — fetches attractions & summaries
+Multi-agent architecture
 
-📝 Planner Agent — creates day-by-day itinerary
+LLM integration (OpenAI)
 
-⏱ Scheduler Agent — adds timing & travel estimates
+Memory and user-state management
 
-💾 MemoryBank — stores user preferences & past trips
+Orchestration pipeline
 
-🤖 LLM Integration — uses OpenAI (fallback safe)
+Logging and observability
 
-📦 Fully modular & extensible design
+Clean, production-style code structure
 
-📂 Project Architecture
-User → SmartTripAgent → InfoGatherer → Planner → Scheduler → Itinerary
-           ↓
-       MemoryBank
+✨ Key Features
+🧠 InfoGatherer Agent
+
+Collects POIs (mock data) and uses LLM refinement.
+
+📝 Planner Agent
+
+Constructs day-wise itineraries based on user preferences.
+
+⏱ Scheduler Agent
+
+Adds time blocks and estimated travel durations.
+
+💾 MemoryBank
+
+Stores user preferences + trip history in JSON.
+
+🤖 SmartTrip Orchestrator
+
+Runs the full pipeline end-to-end and returns a structured itinerary.
+
+🏗 Architecture Diagram
+                          ┌────────────────────┐
+                          │   SmartTripAgent   │
+                          │  (Orchestrator)    │
+                          └─────────┬──────────┘
+                                    │
+         ┌───────────────┬──────────┴──────────┬────────────────┐
+         │               │                      │                │
+┌────────▼──────┐ ┌──────▼───────────┐ ┌────────▼──────┐ ┌───────▼─────────┐
+│ InfoGatherer  │ │     Planner      │ │   Scheduler    │ │   MemoryBank    │
+│ Collect POIs  │ │ Build itinerary  │ │ Add timings    │ │ Save user data  │
+└───────────────┘ └──────────────────┘ └───────────────┘ └──────────────────┘
+
+📦 Project Structure
+SmartTrip-Agent/
+│
+├── smarttrip/
+│   ├── agents.py        # InfoGatherer, Planner, Scheduler
+│   ├── memory.py        # MemoryBank
+│   └── core.py          # SmartTripAgent orchestrator
+│
+├── SmartTrip.ipynb      # Main demo notebook (Kaggle)
+├── README.md
+└── requirements.txt
 
 🧪 Example Usage
-agent = SmartTripAgent()
+from smarttrip.core import SmartTripAgent
+from openai import OpenAI
 
-trip = agent.build_itinerary(
+client = OpenAI(api_key="your_api_key")
+def llm_complete(prompt):
+    return client.responses.create(
+        model="gpt-4o-mini",
+        input=prompt
+    ).output_text
+
+agent = SmartTripAgent(llm_complete)
+
+result = agent.build_itinerary(
     user_id="demo_user",
     destination="Paris",
     days=3,
     preferences={"pace": "relaxed", "interests": ["art", "food"]}
 )
 
-print(trip)
+print(result)
+
+📊 Example Output (Formatted)
+Trip for: Paris  
+Days: 3  
+
+Day 1:
+  • 09:00 – Visit Eiffel Tower  
+  • 13:00 – Lunch Break  
+  • 15:00 – Explore nearby areas  
+
+Day 2:
+  • 09:00 – Visit Louvre Museum  
+  • 13:00 – Lunch Break  
+  • 15:00 – Explore nearby areas  
 
 🛠 Technologies Used
 
 Python
 
-OpenAI API (gpt-4o-mini)
+OpenAI API
+
+Modular multi-agent design
+
+Logging
+
+JSON-based memory
 
 Kaggle Notebook
 
-JSON Memory System
+🔮 Future Improvements
 
-Logging & modular architecture
+Live Google Search with Tools
+
+Map-based routing & distance estimation
+
+Budget-aware itineraries
+
+Multi-city itineraries
+
+Web UI / API deployment
 
 🏆 Kaggle Submission
 
-This repository is linked to the official kaggle writeup:
-SmartTrip — Personal Travel Itinerary Agent (Concierge Track)
+SmartTrip was submitted to the Concierge Agents Track of the Google × Kaggle AI Agents Capstone.
 
-📌 Future Improvements
+👤 Author
 
-Real-time Google Search tool
-
-POI ranking agent
-
-Budget-based planning
-
-Cloud deployment endpoint
-
-✔ Part of Google × Kaggle Agents Intensive Capstone
+Adarsh
+Kaggle: adarsh2006ms
+GitHub: adarsh27ms
