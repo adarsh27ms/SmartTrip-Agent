@@ -39,10 +39,12 @@ Stores user preferences + trip history in JSON.
 
 Runs the full pipeline end-to-end and returns a structured itinerary.
 
-🏗 Architecture Diagram
+## 🏗 Architecture Diagram
+
+```
                           ┌────────────────────┐
                           │   SmartTripAgent   │
-                          │  (Orchestrator)    │
+                          │    (Orchestrator)  │
                           └─────────┬──────────┘
                                     │
          ┌───────────────┬──────────┴──────────┬────────────────┐
@@ -51,9 +53,12 @@ Runs the full pipeline end-to-end and returns a structured itinerary.
 │ InfoGatherer  │ │     Planner      │ │   Scheduler    │ │   MemoryBank    │
 │ Collect POIs  │ │ Build itinerary  │ │ Add timings    │ │ Save user data  │
 └───────────────┘ └──────────────────┘ └───────────────┘ └──────────────────┘
+```
 
 
-📦 Project Structure
+## 📦 Project Structure
+
+```
 SmartTrip-Agent/
 │
 ├── smarttrip/
@@ -61,9 +66,11 @@ SmartTrip-Agent/
 │   ├── memory.py        # MemoryBank
 │   └── core.py          # SmartTripAgent orchestrator
 │
-├── SmartTrip.ipynb      # Main demo notebook (Kaggle)
+├── smarttrip-personal-travel-itinerary-agent.ipynb
 ├── README.md
 └── requirements.txt
+```
+
 
 🧪 Example Usage
 from smarttrip.core import SmartTripAgent
