@@ -138,8 +138,4 @@ Web UI / API deployment
 
 SmartTrip was submitted to the Concierge Agents Track of the Google × Kaggle AI Agents Capstone.
 
-👤 Author
 
-Adarsh
-Kaggle: adarsh2006ms
-GitHub: adarsh27ms
